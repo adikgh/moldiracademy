@@ -38,8 +38,6 @@
 			<!-- Инфо -->
 			<div class="uitemc_l">
 
-				<? include "top.php"; ?>
-
 				<div class="uitemci_ck">
 					<div class="uitemci_cktr"><div class="lazy_img" data-src="/assets/uploads/course/<?=$course_d['img']?>"></div></div>
 					<div class="uitemci_ckt">
@@ -53,9 +51,9 @@
 						<div class="uitemci_ckb2">
 							<div class="itemci_ls">
 								<? if ($course_d['arh']): ?> <div class="itemci_lsi itemci_lsi_arh">Курс архивте</div> <? endif ?>
-								<? if ($course_d['item']): ?> <div class="itemci_lsi"><?=($buy_d['view']?$buy_d['view'].'/':'')?><?=$course_d['item']?> сабақ</div> <? endif ?>
-								<? if ($course_d['test']): ?> <div class="itemci_lsi"><?=$course_d['test']?> тест</div> <? endif ?>
-								<? if ($course_d['assig']): ?> <div class="itemci_lsi"><?=$course_d['assig']?> тапсырма</div> <? endif ?>
+								<? if (@$course_d['item']): ?> <div class="itemci_lsi"><?=($buy_d['view']?$buy_d['view'].'/':'')?><?=$course_d['item']?> сабақ</div> <? endif ?>
+								<? if (@$course_d['test']): ?> <div class="itemci_lsi"><?=$course_d['test']?> тест</div> <? endif ?>
+								<? if (@$course_d['assig']): ?> <div class="itemci_lsi"><?=$course_d['assig']?> тапсырма</div> <? endif ?>
 							</div>
 							<? if ($buy_d['view']): ?> <div class=""><?=$precent?>%</div> <? endif ?>
 						</div>
@@ -66,11 +64,11 @@
 						<? endif ?>
 					</div>
 
-					<? if ($buy): ?>
+					<? if ($buy && $buy_d['end_dt']): ?>
 						<div class="uitemci_tt">
 							<span>Доступ:</span>
 							<? 
-								if ($buy_d['ins_dt'] != null && $buy_d['end_dt'] != null) {
+								if ($buy_d['ins_dt'] && $buy_d['end_dt']) {
 									$result = intval((strtotime($buy_d['end_dt']) - strtotime(date("d.m.Y"))) / (60*60*24));
 									$result2 = intval((strtotime($buy_d['end_dt']) - strtotime($buy_d['ins_dt'])) / (60*60*24)); 
 									if ($result2 == $result) $precent = 0; elseif ($result > 0) $precent = round(100 / ($result2 / ($result2 - $result))); else $precent = 100;

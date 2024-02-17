@@ -67,7 +67,7 @@ $(document).ready(function() {
 		} else {$(this).attr('data-sel',0)}
 	});
 	$('input[type*="tel"]').on('input', function() {
-		var val = $(this).val().replace(/_/g, '').replace(/ /g, '').replace(/-/g, '').replace(/\(/g, '').replace(/\)/g, '').replace(/\+/g, '').replace(/тг/g, '').replace(/\./g, '')
+		var val = $(this).val().replace(/_/g, '').replace(/ /g, '').replace(/-/g, '').replace(/\(/g, '').replace(/\)/g, '').replace(/\+/g, '').replace(/тг/g, '').replace(/күн/g, '').replace(/\./g, '')
 		$(this).attr('data-val', val)
 		if ($(this).attr('data-lenght') <= val.length) {
 			$(this).attr('data-sel', 1);

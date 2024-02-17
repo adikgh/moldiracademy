@@ -5,38 +5,38 @@
 
 	// Курс деректері
 	if (isset($_GET['id']) || $_GET['id'] != '') {
-		$cours_id = $_GET['id'];
-		$cours_d = fun::course($cours_id);
-		if (!$cours_d) header('location: /education/my/list.php');
+		$course_id = $_GET['id'];
+		$course_d = fun::course($course_id);
+		if (!$course_d) header('location: /education/my/list.php');
 	} else header('location: /education/my/list.php');
 
 
 	// filter user all
-	if ($_GET['on'] == 1) $cours_sub_all = db::query("select * from course_pay where course_id = '$cours_id' and off is null");
-	elseif ($_GET['off'] == 1) $cours_sub_all = db::query("select * from course_pay where course_id = '$cours_id' and off is not null");
-	else $cours_sub_all = db::query("select * from course_pay where course_id = '$cours_id'");
+	if (@$_GET['on'] == 1) $cours_sub_all = db::query("select * from course_pay where course_id = '$course_id' and off is null");
+	elseif (@$_GET['off'] == 1) $cours_sub_all = db::query("select * from course_pay where course_id = '$course_id' and off is not null");
+	else $cours_sub_all = db::query("select * from course_pay where course_id = '$course_id'");
 	$page_result = mysqli_num_rows($cours_sub_all);
 
 	// page number
-	$page = 1; if ($_GET['page'] && is_int(intval($_GET['page']))) $page = $_GET['page'];
+	$page = 1; if (@$_GET['page'] && is_int(intval($_GET['page']))) $page = $_GET['page'];
 	$page_age = 50;
 	$page_all = ceil($page_result / $page_age);
-	if ($page > $page_all) $page = $page_all;
+	if ($page > $page_all && $page_all != 0) $page = $page_all;
 	$page_start = ($page - 1) * $page_age;
 	$number = $page_start;
 
 	// filter cours
-	if ($_GET['on'] == 1) $cours_sub = db::query("select * from course_pay where course_id = '$cours_id' and off is null order by ins_dt desc limit $page_start, $page_age");
-	elseif ($_GET['off'] == 1) $cours_sub = db::query("select * from course_pay where course_id = '$cours_id' and off is not null order by ins_dt desc limit $page_start, $page_age");
-	else $cours_sub = db::query("select * from course_pay where course_id = '$cours_id' order by ins_dt desc limit $page_start, $page_age");
+	if (@$_GET['on'] == 1) $cours_sub = db::query("select * from course_pay where course_id = '$course_id' and off is null order by ins_dt desc limit $page_start, $page_age");
+	elseif (@$_GET['off'] == 1) $cours_sub = db::query("select * from course_pay where course_id = '$course_id' and off is not null order by ins_dt desc limit $page_start, $page_age");
+	else $cours_sub = db::query("select * from course_pay where course_id = '$course_id' order by ins_dt desc limit $page_start, $page_age");
 
 
 	// Сайттың баптаулары
 	$menu_name = 'item';
 	$pod_menu_name = 'users';
 	$site_set['swiper'] = true;
-	$site_set['utop'] = $cours_d['name_'.$lang].' - оқушылар';
-	$site_set['utop_bk'] = 'course/?id='.$cours_id;
+	$site_set['utop'] = $course_d['name_'.$lang].' - оқушылар';
+	$site_set['utop_bk'] = 'course/admin.php?id='.$course_id;
 	$css = ['education/main', 'education/item', 'education/auser'];
 	$js = ['education/main', 'education/admin', 'education/auser'];
 ?>
@@ -44,15 +44,17 @@
 
 	<div class="uitem">
 
+		<? include "../top.php"; ?>
+
 		<div class="uitem_c2">
 
 			<!--  -->
 			<div class="ucours_t">
 				<!-- <div class="swiper ucours_ts">
 					<div class="swiper-wrapper">
-						<a class="swiper-slide ucours_ti <?=($_GET['on']!=1&&$_GET['off']!=1?'ucours_tm_act':'')?>" href="/user/item/users/?id=<?=$cours_id?>">Барлығы <?=($_GET['on']!=1&&$_GET['off']!=1?'('.$page_result.')':'')?></a>
-						<a class="swiper-slide ucours_ti <?=($_GET['on']==1?'ucours_tm_act':'')?>" href="/user/item/users/?id=<?=$cours_id?>&on=1">Қосулы <?=($_GET['on']==1?'('.$page_result.')':'')?></a>
-						<a class="swiper-slide ucours_ti <?=($_GET['off']==1?'ucours_tm_act':'')?>" href="/user/item/users/?id=<?=$cours_id?>&off=1">Жабық <?=($_GET['off']==1?'('.$page_result.')':'')?></a>
+						<a class="swiper-slide ucours_ti <?=($_GET['on']!=1&&$_GET['off']!=1?'ucours_tm_act':'')?>" href="/user/item/users/?id=<?=$course_id?>">Барлығы <?=($_GET['on']!=1&&$_GET['off']!=1?'('.$page_result.')':'')?></a>
+						<a class="swiper-slide ucours_ti <?=($_GET['on']==1?'ucours_tm_act':'')?>" href="/user/item/users/?id=<?=$course_id?>&on=1">Қосулы <?=($_GET['on']==1?'('.$page_result.')':'')?></a>
+						<a class="swiper-slide ucours_ti <?=($_GET['off']==1?'ucours_tm_act':'')?>" href="/user/item/users/?id=<?=$course_id?>&off=1">Жабық <?=($_GET['off']==1?'('.$page_result.')':'')?></a>
 					</div>
 					<div class="swiper-button-next ucours_tnext"><i class="fal fa-chevron-right"></i></div>
 				</div> -->
@@ -70,7 +72,7 @@
 				<div class="uc_u">
 					<div class="uc_us">
 						<div class="uc_usn form_im">
-							<input type="text" class="form_im_txt cours_user_search_in" placeholder="Іздеуді қолданыңыз" data-id="<?=$cours_id?>" />
+							<input type="text" class="form_im_txt cours_user_search_in" placeholder="Іздеуді қолданыңыз" data-id="<?=$course_id?>" />
 							<i class="fal fa-search form_icon"></i>
 						</div>
 					</div>
@@ -94,7 +96,7 @@
 									<div class="uc_ui_right">
 										<div class="form_im form_im_toggle">
 											<input type="checkbox" class="homework" data-val="" />
-											<div class="form_im_toggle_btn <?=($user_d['locked']?'':'form_im_toggle_act')?>"></div>
+											<div class="form_im_toggle_btn <?=(@$user_d['locked']?'':'form_im_toggle_act')?>"></div>
 										</div>
 									</div>
 
@@ -158,21 +160,21 @@
 
 				<? if ($page_all > 1): ?>
 					<div class="uc_p">
-						<? if ($page > 1): ?> <a class="uc_pi" href="/education/course/users/?id=<?=$cours_id?>&page=<?=$page-1?>"><i class="fal fa-long-arrow-left"></i></a> <? endif ?>
-						<a class="uc_pi <?=($page==1?'uc_pi_act':'')?>" href="/education/course/users/?id=<?=$cours_id?>&page=1">1</a>
+						<? if ($page > 1): ?> <a class="uc_pi" href="/education/course/users/?id=<?=$course_id?>&page=<?=$page-1?>"><i class="fal fa-long-arrow-left"></i></a> <? endif ?>
+						<a class="uc_pi <?=($page==1?'uc_pi_act':'')?>" href="/education/course/users/?id=<?=$course_id?>&page=1">1</a>
 						<? for ($pg = 2; $pg < $page_all; $pg++): ?>
 							<? if ($pg == $page - 1): ?>
 								<? if ($page - 1 != 2): ?> <div class="uc_pi uc_pi_disp">...</div> <? endif ?>
-								<a class="uc_pi <?=($page==$pg?'uc_pi_act':'')?>" href="/education/course/users/?id=<?=$cours_id?>&page=<?=$pg?>"><?=$pg?></a>
+								<a class="uc_pi <?=($page==$pg?'uc_pi_act':'')?>" href="/education/course/users/?id=<?=$course_id?>&page=<?=$pg?>"><?=$pg?></a>
 							<? endif ?>
-							<? if ($pg == $page): ?> <a class="uc_pi <?=($page==$pg?'uc_pi_act':'')?>" href="/user/item/users/?id=<?=$cours_id?>&page=<?=$pg?>"><?=$pg?></a> <? endif ?>
+							<? if ($pg == $page): ?> <a class="uc_pi <?=($page==$pg?'uc_pi_act':'')?>" href="/user/item/users/?id=<?=$course_id?>&page=<?=$pg?>"><?=$pg?></a> <? endif ?>
 							<? if ($pg == $page + 1): ?>
-								<a class="uc_pi <?=($page==$pg?'uc_pi_act':'')?>" href="/education/course/users/?id=<?=$cours_id?>&page=<?=$pg?>"><?=$pg?></a>
+								<a class="uc_pi <?=($page==$pg?'uc_pi_act':'')?>" href="/education/course/users/?id=<?=$course_id?>&page=<?=$pg?>"><?=$pg?></a>
 								<? if ($page + 1 != $page_all - 1): ?> <div class="uc_pi uc_pi_disp">...</div> <? endif ?>
 							<? endif ?>
 						<? endfor ?>
-						<a class="uc_pi <?=($page==$page_all?'uc_pi_act':'')?>" href="/education/course/users/?id=<?=$cours_id?>&page=<?=$page_all?>"><?=$page_all?></a>
-						<? if ($page < $page_all): ?> <a class="uc_pi" href="/education/course/users/?id=<?=$cours_id?>&page=<?=$page+1?>"><i class="fal fa-long-arrow-right"></i></a> <? endif ?>
+						<a class="uc_pi <?=($page==$page_all?'uc_pi_act':'')?>" href="/education/course/users/?id=<?=$course_id?>&page=<?=$page_all?>"><?=$page_all?></a>
+						<? if ($page < $page_all): ?> <a class="uc_pi" href="/education/course/users/?id=<?=$course_id?>&page=<?=$page+1?>"><i class="fal fa-long-arrow-right"></i></a> <? endif ?>
 					</div>
 				<? endif ?>
 				
@@ -217,7 +219,7 @@
 					<i class="far fa-at form_icon"></i>
 				</div>
 				<div class="form_im form_im_bn">
-					<div class="btn add_user_send" data-cours-id="<?=$cours_id?>">
+					<div class="btn add_user_send" data-cours-id="<?=$course_id?>">
 						<span>Қосу</span>
 					</div>
 				</div>

@@ -15,14 +15,27 @@
 		}
 
 
+		// pack
+		public static function pack($id) {
+			$sql = db::query("select * from course_pack where id = '$id'");
+			$sql = mysqli_fetch_array($sql);
+			return $sql['course_id'];
+		}
+		public static function pack_next_number($id) {
+			$sql = db::query("select * from course_pack where course_id = '$id' order by number desc limit 1");
+			if (mysqli_num_rows($sql)) return (mysqli_fetch_array($sql))['number'] + 1; else return 1;
+		}
+
+
 		// block
 		public static function block($id) {
 			$sql = db::query("select * from course_block where id = '$id'");
 			$sql = mysqli_fetch_array($sql);
 			return $sql['course_id'];
 		}
-		public static function block_next_number($id) {
-			$sql = db::query("select * from course_block where course_id = '$id' order by number desc limit 1");
+		public static function block_next_number($id, $pid) {
+			if ($pid) $sql = db::query("select * from course_block where pack_id = '$pid' order by number desc limit 1"); 
+			else $sql = db::query("select * from course_block where course_id = '$id' order by number desc limit 1");
 			if (mysqli_num_rows($sql)) return (mysqli_fetch_array($sql))['number'] + 1; else return 1;
 		}
 

@@ -4,7 +4,8 @@
 	if (!$user_right) header('location: /education/');
 
 	// course 
-	$cours = db::query("select * from course ORDER BY ins_dt DESC");
+	$cours = db::query("select * from course where arh is null ORDER BY ins_dt DESC");
+	$cours_arh = db::query("select * from course where arh = 1 ORDER BY ins_dt DESC");
 
 
 	// Сайттың баптаулары
@@ -18,52 +19,47 @@
 	<div class="ucours">
 
 		<div class="head_c">
-         <h4>Курстар</h4>
+        	<h4>Курстар</h4>
 		</div>
 
 		<div class="uc_d">
-			<? if ($user_right): ?>
-				<div class="uc_di bq3_ci_rg cours_add_pop">
-					<i class="fal fa-plus"></i>
-					<span>Курс қосу</span>
-				</div>
-			<? endif ?>
+			<div class="uc_di bq3_ci_rg cours_add_pop">
+				<i class="fal fa-plus"></i>
+				<span>Курс қосу</span>
+			</div>
 
 			<? while($cours_d = mysqli_fetch_assoc($cours)): ?>
 				<? $cours_id = $cours_d['id']; ?>
 				<? if ($cours_d['info']) $cours_d = array_merge($cours_d, fun::course_info($cours_d['id'])); ?>
-				<?	$sub = db::query("select * from course_pay where course_id = '$cours_id' and user_id = '$user_id'"); ?>
-				<? if (mysqli_num_rows($sub) || $user_right) : ?>
-					<? if (mysqli_num_rows($sub) && !$user_right) $sub_i = mysqli_fetch_assoc($sub); else $sub_i = null; ?>
-					<a class="uc_di" href="../course/admin.php?id=<?=$cours_id?>">
-						<div class="bq_ci_img"><div class="lazy_img" data-src="/assets/uploads/course/<?=$cours_d['img']?>"></div></div>
-						<div class="uc_dit">
-							<div class="bq_ci_info"><div class="bq_cih"><?=$cours_d['name_'.$lang]?></div></div>
-							<? if ($cours_d['info']): ?>
-								<div class="uc_dib">
-									<? if ($sub_i['view']) $precent = round(100 / ($cours_d['item'] / $sub_i['view'])); ?>
-									<div class="uc_dib_ckb">
-										<div class="uc_dib_ckb2">
-											<div class="itemci_ls">
-												<? if ($cours_d['arh']): ?> <div class="itemci_lsi itemci_lsi_arh">Курс архивте</div> <? endif ?>
-												<? if ($cours_d['item']): ?> <div class="itemci_lsi"><?=($sub_i['view']?$sub_i['view'].'/':'')?><?=$cours_d['item']?> сабақ</div> <? endif ?>
-												<? if ($cours_d['test']): ?> <div class="itemci_lsi"><?=$cours_d['test']?> тест</div> <? endif ?>
-												<? if ($cours_d['assig']): ?> <div class="itemci_lsi"><?=$cours_d['assig']?> тапсырма</div> <? endif ?>
-											</div>
-											<? if ($sub_i['view']): ?> <div class="itemci_lsr"><?=$precent?>%</div> <? endif ?>
-										</div>
-										<? if ($sub_i['view']): ?>
-											<div class="uitemci_time_b">
-												<div class="uitemci_time_b2" style="width:<?=$precent?>%"></div>
-											</div>
-										<? endif ?>
-									</div>
-								</div>
-							<? endif ?>
-						</div>
-						<!-- <? if (!$sub_i['view']): ?> <div class="bq_ci_btn"><div class="btn btn_gr btn_dd"><i class="fal fa-long-arrow-right"></i></div></div> <? endif ?> -->
-					</a>
-				<? endif ?>
+				<a class="uc_di" href="../course/admin.php?id=<?=$cours_id?>">
+					<div class="bq_ci_img"><div class="lazy_img" data-src="/assets/uploads/course/<?=$cours_d['img']?>"></div></div>
+					<div class="uc_dit">
+						<div class="bq_ci_info"><div class="bq_cih"><?=$cours_d['name_'.$lang]?></div></div>
+					</div>
+				</a>
+			<? endwhile ?>
+		</div>
+
+	</div>
+
+
+	<br><br><br>
+
+	<div class="ucours">
+		<div class="head_c">
+        	<h4>Архивте</h4>
+		</div>
+
+		<div class="uc_d">
+			<? while($cours_d = mysqli_fetch_assoc($cours_arh)): ?>
+				<? $cours_id = $cours_d['id']; ?>
+				<? if ($cours_d['info']) $cours_d = array_merge($cours_d, fun::course_info($cours_d['id'])); ?>
+				<a class="uc_di" href="../course/admin.php?id=<?=$cours_id?>">
+					<div class="bq_ci_img"><div class="lazy_img" data-src="/assets/uploads/course/<?=$cours_d['img']?>"></div></div>
+					<div class="uc_dit">
+						<div class="bq_ci_info"><div class="bq_cih"><?=$cours_d['name_'.$lang]?></div></div>
+					</div>
+				</a>
 			<? endwhile ?>
 		</div>
 
@@ -87,14 +83,14 @@
 						<i class="fal fa-text form_icon"></i>
 					</div>
 					<div class="form_im">
-						<div class="form_span">Доступ уақыты:</div>
+						<div class="form_span">Доступ уақыты (айды күндермен):</div>
 						<input type="tel" class="form_txt fr_days cours_access" placeholder="60 күн" data-lenght="1" />
 						<i class="fal fa-calendar-alt form_icon"></i>
 					</div>
 					<div class="form_im">
-						<div class="form_span">Автор:</div>
-						<input type="text" class="form_txt cours_autor" placeholder="Авторды жазыңыз" data-lenght="2" />
-						<i class="fal fa-user-graduate form_icon"></i>
+						<div class="form_span">Тариф саны (егер бар болса):</div>
+						<input type="tel" class="form_txt fr_number cours_rates" placeholder="1" data-lenght="1" />
+						<i class="fal fa-calendar-alt form_icon"></i>
 					</div>
 
 					<div class="form_im">

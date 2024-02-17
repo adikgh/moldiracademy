@@ -23,13 +23,13 @@
          $user_ps = false;
 
          if ((isset($_SESSION['uph']) && isset($_SESSION['ups'])) || (isset($_SESSION['upm']) && isset($_SESSION['ups']))) {
-               $user_ph = $_SESSION['uph'];
-               $user_pm = $_SESSION['upm'];
-               $user_ps = $_SESSION['ups'];
+            $user_ph = @$_SESSION['uph'];
+            $user_pm = @$_SESSION['upm'];
+            $user_ps = $_SESSION['ups'];
          } else if ((isset($_COOKIE['uph']) && isset($_COOKIE['ups'])) || (isset($_COOKIE['upm']) && isset($_COOKIE['ups']))) {
-               $user_ph = $_COOKIE['uph'];
-               $user_pm = $_COOKIE['upm'];
-               $user_ps = $_COOKIE['ups'];
+            $user_ph = @$_COOKIE['uph'];
+            $user_pm = @$_COOKIE['upm'];
+            $user_ps = $_COOKIE['ups'];
          }
          if (($user_ph && $user_ps) || ($user_pm && $user_ps)) {
             $user = db::query("SELECT * FROM user WHERE phone = '$user_ph'");
@@ -69,9 +69,9 @@
    // data
    $core = new core;
    $user = core::$user_data;
-   $user_id = $user['id'];
-   $user_right = $user['right'];
-   $user_super_right = $user['super_right'];
+   $user_id = @$user['id'];
+   $user_right = @$user['right'];
+   $user_super_right = @$user['super_right'];
 
 
    // lang
@@ -87,6 +87,7 @@
       'header' => true,
       'footer' => true,
       'menu' => true,
+      'pmenu' => false,
       'utopu' => true,
       'cl_wh' => false,
    ];

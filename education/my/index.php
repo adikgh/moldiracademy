@@ -2,6 +2,7 @@
 
 	// Қолданушыны тексеру
 	if (!$user_id) header('location: /education/');
+	if ($user_right) header('location: /education/list.php');
 	if (!$user['open']) $ubd = db::query("UPDATE `user` SET `open` = 1 WHERE id = '$user_id'");
 
 	// Cours 

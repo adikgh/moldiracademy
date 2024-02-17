@@ -64,7 +64,7 @@ $(document).ready(function() {
 				data: formData,
 				success: function(msg){
 					if (msg.error == '') {
-						tfile_n = 'url(/assets/img/cours/' + msg.file + ')'
+						tfile_n = 'url(/assets/uploads/course/' + msg.file + ')'
 						tfile.attr('data-val', msg.file)
 						tfile.siblings('.cours_img_add').addClass('form_im_img2')
 						tfile.siblings('.cours_img_add').css('background-image', tfile_n)
@@ -90,7 +90,7 @@ $(document).ready(function() {
 				dataType: "html",
 				data: ({
 					name: $('.cours_name').attr('data-val'), access: $('.cours_access').data('val'),
-					autor: $('.cours_autor').data('val'), img: $('.cours_img').attr('data-val'),
+					rates: $('.cours_rates').data('val'), img: $('.cours_img').attr('data-val'),
 					price: $('.cours_price').data('val'), price_sole: $('.cours_price_sole').data('val'),
 					item: $('.cours_item').data('val'), assig: $('.cours_assig').data('val'),
 				}),
@@ -168,6 +168,46 @@ $(document).ready(function() {
 
 
 
+
+
+	// add_pack_b
+	$('.add_pack_b').click(function(){
+		$('.pack_add').addClass('pop_bl_act');
+		$('#html').addClass('ovr_h');
+	})
+	$('.pack_add_back').click(function(){
+		$('.pack_add').removeClass('pop_bl_act');
+		$('#html').removeClass('ovr_h');
+	})
+	$('.btn_pack_add').on('click', function(){
+		if ($('.pack_name').attr('data-sel') != 1) mess('Тақырыпты жазыңыз')
+		else {
+			$.ajax({
+				url: "/education/course/get.php?pack_add",
+				type: "POST",
+				dataType: "html",
+				data: ({
+					name: $('.pack_name').attr('data-val'),
+					course_id: $('.btn_pack_add').data('course-id'),
+					access: $('.pack_access').data('val'),
+					price: $('.pack_price').data('val'),
+					price_sole: $('.pack_price_sole').data('val'),
+				}),
+				success: function(data){
+					if (data == 'yes') location.reload();
+					else console.log(data)
+				},
+				beforeSend: function(){},
+				error: function(data){console.log(data)}
+			})
+		} 
+	})
+
+
+
+
+
+
 	// add_block_b
 	$('.add_block_b').click(function(){
 		$('.block_add').addClass('pop_bl_act');
@@ -186,7 +226,8 @@ $(document).ready(function() {
 				dataType: "html",
 				data: ({
 					name: $('.block_name').attr('data-val'),
-					course_id: $('.btn_block_add').data('cours-id'),
+					course_id: $('.btn_block_add').data('course-id'),
+					pack_id: $('.btn_block_add').data('pack-id'),
 					item: $('.block_item').data('val'), assig: $('.block_assig').data('val'),
 				}),
 				success: function(data){
@@ -222,7 +263,8 @@ $(document).ready(function() {
 				dataType: "html",
 				data: ({
 					name: $('.lesson_name').attr('data-val'),
-					course_id: $('.btn_lesson_add').data('cours-id'),
+					course_id: $('.btn_lesson_add').data('course-id'),
+					pack_id: $('.btn_lesson_add').data('pack-id'),
 					block_id: $('.btn_lesson_add').data('block-id'),
 					open: $('.lesson_open').attr('data-val'),
 					youtube: $('.lesson_youtube').attr('data-val'),

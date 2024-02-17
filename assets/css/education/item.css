@@ -431,10 +431,10 @@
 }
 .uitem_c2 .uc_list{margin-bottom:0}
 .uc_list .coursls_i_rg{margin-top:20px}
-.uitem_c2 .uc_list .coursls_i_rg:first-child, .uitem_c2 .uc_list .coursls_i_rg:first-child .btn{
+/* .uitem_c2 .uc_list .coursls_i_rg:first-child, .uitem_c2 .uc_list .coursls_i_rg:first-child .btn{
 	height: 100%;
 	margin: 0;
-}
+} */
 
 .coursls_cn .coursls_i_rg{padding:5px 30px 0 45px}
 @media(max-width:500px){.coursls_cn .coursls_i_rg{padding:5px 20px 0 20px;margin-bottom:10px}}
@@ -460,8 +460,8 @@
 	.uitemc_l{
 		width: 100%;
 		margin-bottom: 20px;
-		display: flex;
-		flex-direction: column-reverse;
+		/* display: flex; */
+		/* flex-direction: column-reverse; */
 	}
 }
 
@@ -749,3 +749,86 @@
 	opacity: 1;
 }
 .lesson1_block_act{height:280px}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*  */
+.uhwa_lp{
+	position: relative;
+	width: 100%;
+	display: flex;
+	justify-content: flex-start;
+	align-items: stretch;
+	flex-wrap: wrap;
+	margin-bottom: 15px;
+	margin-top: 20px;
+}
+.uhwa_lpi{
+	position: relative;
+	padding: 20px 30px;
+	width: calc(100% / 3 - 15px * 2 / 3);
+	border-radius: 16px;
+	border: 1px solid var(--gr3);
+	margin-right: 15px;
+	margin-bottom: 15px;
+	transition: .3s;
+}
+.uhwa_lpi_act{
+	border-color: var(--cm);
+	color: var(--cm);
+}
+.uhwa_lpi_de{opacity:.7}
+.uhwa_lpi:nth-child(3n){margin-right:0}
+.uhwa_lpi:hover{
+	-webkit-box-shadow: 4px 10px 84px rgb(0 0 0 / 5%);
+	box-shadow: 4px 10px 84px rgb(0 0 0 / 5%);
+	border-color: var(--tr);
+	z-index: 2;
+}
+.uhwa_lpi_de:hover{
+	-webkit-box-shadow: none;
+	box-shadow: none;
+	border-color: var(--gr3);
+}
+@media(max-width:500px){
+	.uhwa_lp{margin-bottom:10px}
+	.uhwa_lpi{
+		padding: 20px 30px;
+		width: calc(100% / 2 - 10px * 2 / 3);
+		border-radius: 14px;
+		margin-right: 10px;
+		margin-bottom: 20px;
+	}
+	.uhwa_lpi:nth-child(2n){margin-right:0}
+	.uhwa_lpi:nth-child(3), .uhwa_lpi:nth-child(4){margin-bottom:10px}
+}
+
+.uhwa_lpi p{
+	font-size: 16px;
+   line-height: 22px;
+	font-weight: 600;
+}
+.uhwa_lpi span, .uhwa_lpi_act span{font-size:12px;color:var(--bl)}

@@ -53,21 +53,23 @@
 			</div>
 		</div>
 		<div class="utop">
-			<? if ($site_set['utop_bk']): ?>
+			<? if (@$site_set['utop_bk']): ?>
 				<div class="utop_l">
-					<a class="utop_ic" href="/education/<?=$site_set['utop_bk']?>"><i class="fal fa-long-arrow-left"></i></a>
+					<a class="utop_ic" href="/education/<?=@$site_set['utop_bk']?>">
+						<i class="fal fa-long-arrow-left"></i>
+					</a>
 				</div>
 			<? endif ?>
 			<div class="utop_r">
-				<? if ($site_set['utop']): ?>
-					<div class="utop_nm"><?=$site_set['utop']?></div>
+				<? if (@$site_set['utop']): ?>
+					<div class="utop_nm"><?=@$site_set['utop']?></div>
 				<? else: ?>
 					<a class="utop_nm utop_nm2 logo" href="/education/">
 						<!-- <div class="logo_l lazy_img" data-src="/assets/img/logo/logo_bl.png"></div> -->
 						<div class="logo_r"><?=$site['name']?></div>
 					</a>
 				<? endif ?>
-				<? if ($site_set['utopu'] != false): ?>
+				<? if (@$site_set['utopu'] != false): ?>
 					<a class="menu" href="/education/acc/">
 						<div class="menu_bars">
 							<div class="menu_bars_c lazy_img" data-src="/assets/uploads/users/<?=$user['img']?>">
@@ -81,7 +83,7 @@
 	</div>
 <? endif ?>
 
-<? if ($site_set['pmenu'] == true && $user_right): ?>
+<? if (@$site_set['pmenu'] && $user_right): ?>
    <div class="pmenu">
       <div class="pmenu_c">
 			<div class="pmenu_cm">
@@ -126,15 +128,15 @@
 	<div class="ub1 <?=($user_right?'ub1_admin':'')?>">
 
 	<!-- Шапка -->
-	<? if ($site_set['utop_bk']): ?>
+	<? if (@$site_set['utop_bk']): ?>
 		<div class="utopc <?=(!$user_right?'uitemc_ud':'') ?>">
 			<a class="utopc_bk" href="/education/<?=$site_set['utop_bk']?>">
 				<div class=""><i class="fal fa-long-arrow-left"></i></div>
 				<span>Артқа</span>
 			</a>
 			<a class="utopc_s" href="/education/my/">Курсы</a>
-			<a class="utopc_s" href="/education/course/?id=<?=$cours_id?>"><?=$cours_d['name_'.$lang]?></a>
-			<? if ($pod_menu_name == 'users'): ?> <div class="utopc_s">Оқушылар</div> <? endif ?>
-			<? if ($menu_name == 'lesson'): ?> <div class="utopc_s"><?=$lesson['name_'.$lang]?></div> <? endif ?>
+			<a class="utopc_s" href="/education/course/?id=<?=$course_id?>"><?=@$course_d['name_'.$lang]?></a>
+			<? if (@$pod_menu_name == 'users'): ?> <div class="utopc_s">Оқушылар</div> <? endif ?>
+			<? if (@$menu_name == 'lesson'): ?> <div class="utopc_s"><?=$lesson['name_'.$lang]?></div> <? endif ?>
 		</div>
 	<? endif ?>
