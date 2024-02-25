@@ -174,11 +174,58 @@ $(document).ready(function() {
 
 
 
+	// contract_a
+	$('.contract_a').on('click', function(){
+		$.ajax({
+			url: "/education/course/get.php?contract_a1",
+			type: "POST",
+			dataType: "html",
+			data: ({
+				id: $('.contract_a').data('id'),
+			}),
+			beforeSend: function(){},
+			error: function(data){console.log(data)},
+			success: function(data){
+				if (data == 'yes') {
+					$('.btn_contract_fg').addClass('btn_contract_sel')
+					$('.btn_contract_fg').removeClass('btn_grs')
+				} else console.log(data)
+			},
+		})
+	})
+	$('html').on('click', '.btn_contract_fg.btn_grs', function(){ mess('Шартты оқымай батырма жұмыс жасамайды') })
+	$('html').on('click', '.btn_contract_fg.btn_contract_sel', function(){ 
+		$.ajax({
+			url: "/education/course/get.php?contract_a2",
+			type: "POST",
+			dataType: "html",
+			data: ({ id: $('.contract_a').data('id'), }),
+			beforeSend: function(){ },
+			error: function(data){ console.log(data) },
+			success: function(data){
+				if (data == 'yes') {
+					$('.contract_block').removeClass('pop_bl_act');
+					$('#html').removeClass('ovr_h');
+				}
+				else console.log(data)
+			},
+		})
+	})
 
-
-
-
-
+	if ($('div').hasClass('contract_block')) {
+		urls = $('.contract_a').attr('href') + '?view=1'
+		$.ajax({
+			url: "/education/course/" + urls,
+			type: "POST",
+			dataType: "html",
+			data: ({}),
+			beforeSend: function(){ },
+			error: function(data){ console.log(data) },
+			success: function(data){
+				$('.contract_ghnc').html(data)
+			},
+		})
+	}
 
 
 

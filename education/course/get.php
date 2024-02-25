@@ -209,3 +209,34 @@
 		if ($ins) echo 'yes';
 		exit();
 	}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	// 
+	if(isset($_GET['contract_a1'])) {
+		$id = @strip_tags($_POST['id']);
+		$upd = db::query("UPDATE `course_pay` SET `contract` = 1 WHERE `id` = '$id'");
+		if ($upd) echo 'yes';
+		exit();
+	}
+	
+	// 
+	if(isset($_GET['contract_a2'])) {
+		$id = @strip_tags($_POST['id']);
+		$upd = db::query("UPDATE `course_pay` SET `contract` = 2 WHERE `id` = '$id'");
+		if ($upd) echo 'yes';
+		exit();
+	}
+	
