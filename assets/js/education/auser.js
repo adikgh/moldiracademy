@@ -35,7 +35,9 @@ $(document).ready(function() {
 	$('.add_user_send').on('click', function(){
 		var phone = $('.phone')
 		var mail = $('.mail')
-		var cours_id = $(this).attr('data-cours-id')
+		var cours_id = $(this).attr('data-cours-id')      
+		var pack_id = $('.pack').attr('data-val')
+
 
 		if (phone.attr('data-sel') == 1) {
 			$.ajax({
@@ -45,6 +47,7 @@ $(document).ready(function() {
 				data: ({
 					phone: phone.attr('data-val'),
 					cours_id: cours_id,
+					pack_id: pack_id,
 				}),
 				success: function(data){
 					if (data == 'add') location.reload();
@@ -63,6 +66,7 @@ $(document).ready(function() {
 				data: ({
 					mail: mail.attr('data-val'),
 					cours_id: cours_id,
+					pack_id: pack_id,
 				}),
 				success: function(data){
 					if (data == 'add') location.reload();

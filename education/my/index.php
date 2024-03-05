@@ -23,12 +23,19 @@
 		<div class="uc_d">
 			<? while($pay_course_d = mysqli_fetch_assoc($pay_course)): ?>
 				<? $course_id = $pay_course_d['course_id']; ?>
+				<? $pack_id = $pay_course_d['pack_id']; ?>
 				<? $course_d = fun::course($course_id); ?>
+				<? $pack_d = fun::pack($pack_id); ?>
 				<? if ($course_d['info']) $course_d = array_merge($course_d, fun::course_info($course_d['id'])); ?>
-				<a class="uc_di" href="../course/?id=<?=$course_id?>">
+				<a class="uc_di" href="../course/?id=<?=$course_id?>&pack_id=<?=$pack_id?>">
 					<div class="bq_ci_img"><div class="lazy_img" data-src="/assets/uploads/course/<?=$course_d['img']?>"></div></div>
 					<div class="uc_dit">
-						<div class="bq_ci_info"><div class="bq_cih"><?=$course_d['name_'.$lang]?></div></div>
+						<div class="bq_ci_info">
+							<div class="bq_cih">
+								<?=$course_d['name_'.$lang]?>
+								<? if ($pack_id): ?> (<?=$pack_d['name_'.$lang]?>) <? endif ?>
+							</div>
+						</div>
 						<div class="uc_dib">
 							<? if ($course_d['info']): ?>
 								<? if ($pay_course_d['view']) $precent = round(100 / ($course_d['item'] / $pay_course_d['view'])); ?>

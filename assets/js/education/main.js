@@ -213,7 +213,7 @@ $(document).ready(function() {
 	})
 
 	if ($('div').hasClass('contract_block')) {
-		urls = $('.contract_a').attr('href') + '?view=1'
+		urls = $('.contract_a').attr('data-url') + '?view=0'
 		$.ajax({
 			url: "/education/course/" + urls,
 			type: "POST",

@@ -19,6 +19,11 @@
 		public static function pack($id) {
 			$sql = db::query("select * from course_pack where id = '$id'");
 			$sql = mysqli_fetch_array($sql);
+			return $sql;
+		}
+		public static function pack_cid($id) {
+			$sql = db::query("select * from course_pack where id = '$id'");
+			$sql = mysqli_fetch_array($sql);
 			return $sql['course_id'];
 		}
 		public static function pack_next_number($id) {

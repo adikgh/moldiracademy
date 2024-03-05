@@ -8,21 +8,49 @@
 		$course_id = $_GET['id'];
 		$course = db::query("select * from course where id = '$course_id'");
 		if (mysqli_num_rows($course)) {
-			$course_d = mysqli_fetch_assoc($course);			
-			if ($course_d['info']) $course_d = array_merge($course_d, fun::course_info($course_d['id']));
+			$course_d = mysqli_fetch_assoc($course);
+			// if ($course_d['info']) $course_d = array_merge($course_d, fun::course_info($course_d['id']));
+		
+			// Тариф деректері
+			$pack_all = db::query("select * from course_pack where course_id = '$course_id' order by number asc");
+			
+			// Жазылымды тексеру
+			$buy = db::query("select * from course_pay where course_id = '$course_id' and user_id = '$user_id'");
+			if (mysqli_num_rows($buy)) {
+				$buy_d = mysqli_fetch_assoc($buy);
+				if ($buy_d['pack_id']) $pack_id = $buy_d['pack_id'];
+				if ($course_d['contract']) $contract = @$buy_d['$contract'];
+			} else $buy = 0; // header('location: /education/my/');
+
+			// Тариф деректері
+			if ($buy || @$pack_id) {
+				if (mysqli_num_rows($pack_all)) {
+					if (isset($_GET['pack_id']) || $_GET['pack_id'] != '') {
+						$pack_id = $_GET['pack_id'];
+						$pack = db::query("select * from course_pack where id = '$pack_id'");
+						if (mysqli_num_rows($pack)) $pack_dd = mysqli_fetch_assoc($pack);
+					} else {
+						$pack_dd = mysqli_fetch_assoc(db::query("select * from course_pack where course_id = '$course_id' order by number asc limit 1"));
+						$pack_id = $pack_dd['id'];
+					}
+				}
+			}
+
+			// Курс ашылу типі
+			// if (@$pack_dd['open_type']) $open_type = $pack_dd['open_type'];
+			// else if ($cours_d['open_type']) $open_type = $cours_d['open_type'];
+			// if (@$pack_dd['open_start']) $open_start = $pack_dd['open_start'];
+			// else if ($cours_d['open_start']) $open_start = $cours_d['open_start'];
+			// if (@$pack_dd['open_days']) $open_days = $pack_dd['open_days'];
+			// else if ($cours_d['open_days']) $open_days = $cours_d['open_days'];
+
+			// Блок деректері
+			if (@$pack_id) $cblock = db::query("select * from course_block where pack_id = '$pack_id' order by number asc");
+			else $cblock = db::query("select * from course_block where course_id = '$course_id' order by number asc");
+		
 		} else header('location: /education/my/');
 	} else header('location: /education/my/');
 
-	// Жазылымды тексеру
-	$buy = db::query("select * from course_pay where course_id = '$course_id' and user_id = '$user_id'");
-	if (mysqli_num_rows($buy)) {
-		$buy_d = mysqli_fetch_assoc($buy);
-		if ($course_d['contract']) $contract = @$buy_d['$contract'];
-	} else $buy = 0;
-
-
-	// 
-	$cblock = db::query("select * from course_block where course_id = '$course_id' order by number asc");
 
 	
 	// Сайттың баптаулары
@@ -45,7 +73,10 @@
 					<div class="uitemci_cktr"><div class="lazy_img" data-src="/assets/uploads/course/<?=$course_d['img']?>"></div></div>
 					<div class="uitemci_ckt">
 						<div class="uitemci_cktl">
-							<h1 class="uitemci_h"><?=$course_d['name_'.$lang]?></h1>
+							<h1 class="uitemci_h">
+								<?=$course_d['name_'.$lang]?>
+								<? if ($pack_id): ?> (<?=$pack_dd['name_'.$lang]?>) <? endif ?>
+							</h1>
 						</div>
 					</div>
 
@@ -189,7 +220,7 @@
 				</div>
 				<div class="txt_c">
 					<p class="contract_hh">Төмендегі келісім шартты қабылдамай <br> курсты бастай алмайсыз</p>
-					<a class="contract_a" target="_blank" href="contract/<?=$course_d['contract']?>" data-id="<?=$buy_d['id']?>">
+					<a class="contract_a" target="_blank" href="contract/<?=$course_d['contract']?>?view=<?=$pack_dd['contract']?>" data-id="<?=$buy_d['id']?>" data-url="contract/<?=$course_d['contract']?>">
 						<div class="contract_ghn">
 							<div class="contract_ghnc"></div>
 							<div class="btn btn_back3">Оқып шығу</div>

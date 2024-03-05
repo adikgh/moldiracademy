@@ -195,6 +195,22 @@
 				<p>Номерін немесе почтасын жазыңыз<br>доступ ашылады</p>
 			</div>
 			<div class="form_c">
+
+				<? $pack = db::query("select * from course_pack where course_id = '$course_id'"); ?>
+				<? if (mysqli_num_rows($pack) > 1): ?>
+					<div class="form_im form_sel">
+						<div class="form_span">Пакет:</div>
+						<div class="form_txt sel_clc pack" data-val="">Таңдау:</div>
+						<i class="fal fa-ballot-check form_icon"></i>
+						<i class="fal fa-caret-down form_icon_sel"></i>
+						<div class="form_im_sel sel_clc_i">
+							<? while ($pack_d = mysqli_fetch_assoc($pack)): ?>
+								<div class="form_im_seli pack_each" data-val="<?=$pack_d['id']?>"><?=$pack_d['name_'.$lang]?></div>
+							<? endwhile ?>
+						</div>
+					</div>
+				<? endif ?>
+
 				<div class="form_im form_btn">
 					<div class="form_span">Доступ түрі:</div>
 					<div class="form_btn_c">

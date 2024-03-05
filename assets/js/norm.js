@@ -93,7 +93,7 @@ $(document).ready(function() {
 		}
 	})
 
-
+	
 	// 
 	$('.sel_clc').click(function() {
 		if ($(this).hasClass('form_sel_act') == false) {
@@ -113,7 +113,6 @@ $(document).ready(function() {
 		else $(this).siblings('input').attr('data-val', 1)
 		$(this).toggleClass('form_im_toggle_act')
 	});
-
 
 
 

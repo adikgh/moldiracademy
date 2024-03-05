@@ -50,7 +50,7 @@ $(document).ready(function() {
             data: ({
                phone: phone.attr('data-val'),
                password: password.attr('data-val'),
-               code: code.attr('data-val')
+               // code: code.attr('data-val')
             }),
             beforeSend: function(){ },
             error: function(data){ console.log(data) },
