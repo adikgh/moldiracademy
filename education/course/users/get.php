@@ -17,7 +17,7 @@
 		$days = $cours['access']; if ($pack['access']) $days = $pack['access'];
 		$end_dt = date('Y-m-d H:i:s', strtotime("$datetime +$days day"));
 
-		$mess = "Cізге $cours_name курсына доступ ашылды. Сілтеме: https://tnsacademy.kz/?c=$cours_id";
+		$mess = "Cізге $cours_name курсына доступ ашылды. Сілтеме: https://moldiracademy.kz/?c=$cours_id";
 		$mess2 = "Cізге $cours_name курсына доступ ашылды.\nТіркелген нөміріңіз: $phone\nПароль: $code\nСілтеме: https://moldiracademy.kz/?c=$cours_id";
 
 		$user = db::query("SELECT * FROM `user` WHERE phone = '$phone'");
