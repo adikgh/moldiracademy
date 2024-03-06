@@ -80,7 +80,7 @@
 							</a>
 						<? endwhile; ?>
 						<div class="ucours_tm ucours_tm_btn">
-							<button class="btn btn_cm add_pack_b">
+							<button class="btn add_pack_b">
 								<i class="fal fa-plus"></i>
 								<span>Пакет қосу</span>
 							</button>
@@ -89,7 +89,7 @@
 				<? else: ?>
 					<div class="uhwa_lp">
 						<div class="ucours_tm ucours_tm_btn">
-							<button class="btn btn_cm add_pack_b">
+							<button class="btn add_pack_b">
 								<i class="fal fa-plus"></i>
 								<span>Пакет қосу</span>
 							</button>

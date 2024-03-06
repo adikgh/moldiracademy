@@ -45,18 +45,18 @@
 	--bl9: rgba(38,37,41,.9);
 
 	/* color grey */
-	--gr: #9F9F9F;
-	--gr0: rgba(159,159,159,0);
-	--gr05: rgba(159,159,159,.05);
-	--gr1: rgba(159,159,159,.1);
-	--gr2: rgba(159,159,159,.2);
-	--gr3: rgba(159,159,159,.3);
-	--gr4: rgba(159,159,159,.4);
-	--gr5: rgba(159,159,159,.5);
-	--gr6: rgba(159,159,159,.6);
-	--gr7: rgba(159,159,159,.7);
-	--gr8: rgba(159,159,159,.8);
-	--gr9: rgba(159,159,159,.9);
+	--gr: #D6DDE5;
+	--gr0: rgba(214,221,229,0);
+	--gr05: rgba(214,221,229,.05);
+	--gr1: rgba(214,221,229,.1);
+	--gr2: rgba(214,221,229,.2);
+	--gr3: rgba(214,221,229,.3);
+	--gr4: rgba(214,221,229,.4);
+	--gr5: rgba(214,221,229,.5);
+	--gr6: rgba(214,221,229,.6);
+	--gr7: rgba(214,221,229,.7);
+	--gr8: rgba(214,221,229,.8);
+	--gr9: rgba(214,221,229,.9);
 
 	/* color grey2 */
 	--grs: #E2E2E2;
@@ -97,17 +97,17 @@
 	--cls9: rgba(62,140,118,.9);
 
 	/* color 3 */
-	--cm: #d90a2c;
-	--cm0: rgba(217,10,44,.0);
-	--cm1: rgba(217,10,44,.1);
-	--cm2: rgba(217,10,44,.2);
-	--cm3: rgba(217,10,44,.3);
-	--cm4: rgba(217,10,44,.4);
-	--cm5: rgba(217,10,44,.5);
-	--cm6: rgba(217,10,44,.6);
-	--cm7: rgba(217,10,44,.7);
-	--cm8: rgba(217,10,44,.8);
-	--cm9: rgba(217,10,44,.9);
+	--cm: #E398E2;
+	--cm0: rgba(227,152,226,.0);
+	--cm1: rgba(227,152,226,.1);
+	--cm2: rgba(227,152,226,.2);
+	--cm3: rgba(227,152,226,.3);
+	--cm4: rgba(227,152,226,.4);
+	--cm5: rgba(227,152,226,.5);
+	--cm6: rgba(227,152,226,.6);
+	--cm7: rgba(227,152,226,.7);
+	--cm8: rgba(227,152,226,.8);
+	--cm9: rgba(227,152,226,.9);
 }
 
 /* html - body */
@@ -446,8 +446,8 @@ p{font-size:16px}
 
 
 .btn_cm{ /* btn style 3 */
-	background: var(--cm1);
-	border-color: var(--cm1);
+	background: var(--cm);
+	border-color: var(--cm);
 	color: var(--bl);
 	-webkit-box-shadow: none;
 	-moz-box-shadow: none;
@@ -602,16 +602,14 @@ p{font-size:16px}
 	border-radius: 16px;
 	color: var(--bl);
 	background: var(--tr);
-	border: 2px dashed var(--bl2);
-	-webkit-box-shadow: 4px 10px 84px rgb(0 0 0 / 0%);
-	box-shadow: 4px 10px 84px rgb(0 0 0 / 0%);
+	border: 2px dashed var(--cm);
+	-webkit-box-shadow: none;
+	box-shadow: none;
 }
 .btn_k:hover{
 	background: var(--cl1);
 	color: var(--bl);
-	border-color: var(--tr);
-	-webkit-box-shadow: 4px 10px 84px rgb(0 0 0 / 5%);
-	box-shadow: 4px 10px 84px rgb(0 0 0 / 5%);
+	border-color: var(--cl);
 }
 
 

@@ -5092,8 +5092,14 @@
 	margin-right: 4px;
 }
 .uitemc_umi:last-child{margin-right:0}
-.uitemc_umi_act{background:var(--grs5)}
-.uitemc_umi:hover{background:var(--cl1)}
+.uitemc_umi_act{
+	background: var(--gr);
+	/* color: var(--wh); */
+}
+.uitemc_umi:hover{
+	background: var(--cl);
+	color: var(--wh);
+}
 .uitemc_umi2{display:none}
 @media (max-width: 500px) {
 	.uitemc_umi{
