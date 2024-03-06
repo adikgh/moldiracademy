@@ -11,8 +11,8 @@
 		content: '';
 		position: absolute;
 		top: 0px;
-		left: -54px;
-		width: 120%;
+		left: -25%;
+		width: 200%;
 		height: 90px;
 		background: var(--cm);
 	}
