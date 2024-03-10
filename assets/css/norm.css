@@ -1012,11 +1012,32 @@ input:focus + .form_icon, input:hover + .form_icon{color:var(--cl)}
 	z-index: 999;
 }
 .form_sel .form_txt{
+
+	position: relative;
+    width: 100%;
+    max-height: 56px;
+    min-height: 56px;
+    padding: 24px;
+    border-radius: 14px;
+    border: 1px solid var(--bl1);
+    background: var(--tr);
+    color: var(--bl);
+    -webkit-appearance: none;
+    outline: none;
+    user-select: none;
+    font-family: 'Nunito', sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    word-spacing: 1px;
+    transition: .3s;
+
 	cursor: pointer;
 	min-height: 56px;
 	display: flex;
 	align-items: center;
 	border-radius: 14px;
+
+	padding-left: 59px;
 }
 .form_im_sel{
 	position: absolute;
@@ -1029,8 +1050,8 @@ input:focus + .form_icon, input:hover + .form_icon{color:var(--cl)}
 	visibility: hidden;
 	opacity: 0;
 	transition: .3s;
-	-webkit-box-shadow: 4px 10px 84px rgb(0 0 0 / 5%);
-	box-shadow: 4px 10px 84px rgb(0 0 0 / 5%);
+	-webkit-box-shadow: 4px 10px 84px rgb(0 0 0 / 10%);
+	box-shadow: 4px 10px 84px rgb(0 0 0 / 10%);
 	border-radius: 14px;
 	overflow: hidden;
 }
