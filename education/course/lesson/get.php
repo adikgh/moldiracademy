@@ -41,3 +41,17 @@
 
 		exit();
 	}
+
+
+
+   // 
+	if(isset($_GET['add_ques'])) {
+		$titem_id = @strip_tags($_POST['titem_id']);
+		$txt = @strip_tags($_POST['txt']);
+
+      $ins2 = db::query("INSERT INTO `question_item_reply`(`user_id`, `item_id`, `txt`) VALUES ('$user_id', '$titem_id', '$txt')");
+
+      echo 'yes';
+
+		exit();
+	}

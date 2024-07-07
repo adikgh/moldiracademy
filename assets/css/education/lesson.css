@@ -612,3 +612,27 @@ body{
    font-weight: 600;
    color: var(--red);
 }
+
+
+
+
+
+
+
+
+
+
+/*  */
+.lsb_it_nk{
+   position: relative;
+   width: 100%;
+   margin-top: 30px;
+
+   font-size: 20px;
+   line-height: 28px;
+}
+.lsb_it_nk p{
+   font-size: 20px;
+   line-height: 28px;
+   display: inline;
+}

@@ -71,7 +71,7 @@
                      <? elseif ($sql['type'] == 'mat'): include "file.php"; ?>
                      <? elseif ($sql['type'] == 'link'): include "link.php"; ?>
                      <? elseif ($sql['type'] == 'test'): include "test.php"; ?>
-                     <? elseif ($sql['type'] == 'question_item'): include "question_item.php"; ?><? endif ?>
+                     <? elseif ($sql['type'] == 'question'): include "question.php"; ?><? endif ?>
                      <? $data_number = $sql['number']; ?>
                   <? endwhile ?>
    

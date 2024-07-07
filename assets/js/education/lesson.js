@@ -124,7 +124,42 @@ $(document).ready(function() {
 
 	
 
+	// 
+	$('.btn_add_ques').on('click', function () {
 
+		btn = $(this)
+		txt = btn.parent().parent().children('.form_im').children('.inp_form')
+		vr_s = btn.parent().siblings('.lsb_it_nk')
+		// console.log(txt);
+
+		if (txt.val() != '') {
+			$.ajax({
+				url: "/education/course/lesson/get.php?add_ques",
+				type: "POST",
+				dataType: "html",
+				data: ({ 
+					titem_id: btn.attr('data-id'), 
+					txt: txt.val()
+				}),
+				success: function(data){ 
+					// if (data == 'yes') { location.reload(); }
+					// console.log(data);
+					
+					vr_s.removeClass('dsp_n')
+					vr_s.children('p').html(txt.val())
+					btn.parent().parent().children('.form_im').addClass('dsp_n')
+					
+				},
+				beforeSend: function(){ },
+				error: function(data){ }
+			})
+			
+		} else {
+			txt.addClass('lsb_ic_red')
+			mess('Жазуды ұмыттыңыз')
+		}
+		
+	})
 
 
 
