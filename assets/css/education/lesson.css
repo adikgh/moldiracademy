@@ -1,3 +1,22 @@
+body{
+	background: var(--wh);
+}
+
+@media(max-width:1440px){
+   .header{
+      background: var(--gr2);
+   }
+   .app{
+      padding-top: 40px;
+   }
+}
+
+
+
+
+
+
+
 /*  */
 .les{
    position: relative;
@@ -127,26 +146,37 @@
 	position: relative;
 	width: 100%;
 	margin-bottom: 30px;
-   padding-bottom: 30px;
+   /* padding-bottom: 30px; */
 	transition: var(--tm);
-   border-bottom: 1px solid var(--gr2);
+   /* border-bottom: 1px solid var(--gr2); */
 }
 .lsb_ic{
    position: relative;
    width: 100%;
-   background: var(--wh);
+   background: rgb(249,249,255);
    /* -webkit-box-shadow: 4px 10px 84px rgb(0 0 0 / 5%); */
 	/* box-shadow: 4px 10px 84px rgb(0 0 0 / 5%); */
    padding: 40px;
    border-radius: 20px;
 }
 @media (max-width: 500px) {
+   .lsb_i{
+      margin-bottom: 30px;
+      padding-bottom: 30px;
+      border-bottom: 1px solid var(--gr);
+   }
    .lsb_ic{
       background: var(--tr);
       padding: 0;
       border-radius: 0;
    }
 }
+.lsb_ic_red{
+   background: var(--cm1);
+}
+
+
+
 
 .lsb_ih, .lsb_ih2{
 	padding-bottom: 20px;
@@ -436,6 +466,9 @@
    flex-wrap: wrap;
 }
 @media (max-width: 768px) {
+   .ulesson_btn{
+      background: var(--gr2)
+   }
    .ulesson_btn_c{
       padding-bottom: 74px;
    }
@@ -535,4 +568,47 @@
    font-size: 16px;
    font-weight: 600;
    color: var(--cm);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*  */
+.rad1_prc{
+   margin-top: 40px;
+}
+.rad1_prav_otv{
+   position: relative;
+   width: 100%;
+   margin-top: 30px;
+   font-size: 22px;
+   font-weight: 600;
+}
+.rad1_prav_otv p{
+   font-size: 22px;
+   display: inline;
+   font-weight: 600;
+   color: var(--red);
 }

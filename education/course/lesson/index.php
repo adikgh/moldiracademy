@@ -9,14 +9,14 @@
       if (mysqli_num_rows($lesson)) {
          $lesson = mysqli_fetch_assoc($lesson);
          $block_id = $lesson['block_id'];
-         $cours_id = fun::block($block_id);
+         $course_id = fun::block($block_id);
 
-         $cours_d = fun::course($cours_id);
-         if (@$cours_d['private']) header('location: /education/'.$cours_d['private_link'].'/lesson.php?id='.$lesson_id);
-         if (@$lesson['site']) header('location: /education/'.$lesson['site'].'?id='.$lesson_id);
+         $course_d = fun::course($course_id);
+         // if (@$course_d['private']) header('location: /education/'.$course_d['private_link'].'/lesson.php?id='.$lesson_id);
+         // if (@$lesson['site']) header('location: /education/'.$lesson['site'].'?id='.$lesson_id);
 
          
-         $sub = db::query("select * from course_pay where course_id = '$cours_id' and user_id = '$user_id'");
+         $sub = db::query("select * from course_pay where course_id = '$course_id' and user_id = '$user_id'");
          if (mysqli_num_rows($sub) == 1 && !$user_right) $sub_i = mysqli_fetch_array($sub); else $sub_i = 0;
 
          // 
@@ -48,7 +48,7 @@
 	$menu_name = 'lesson';
    $site_set['footer'] = false;
    $site_set['utop'] = $lesson['number'].'. '.$lesson['name_'.$lang];
-   $site_set['utop_bk'] = 'course/?id='.$cours_id;
+   $site_set['utop_bk'] = 'course/?id='.$course_id;
    $site_set['plyr'] = true;
    $css = ['education/main', 'education/lesson'];
    $js = ['education/main', 'education/lesson'];
@@ -60,6 +60,7 @@
 
          <? $info = db::query("select * from course_lesson_item where lesson_id = '$lesson_id' order by number asc"); ?>
          <? if (mysqli_num_rows($info)): ?>
+
             <div class="lsb">
                <div class="lsb_c lsb_it1" data-lesson-id="<?=$lesson['id']?>">
 
@@ -69,6 +70,7 @@
                      <? elseif ($sql['type'] == 'video'): include "video.php"; ?>
                      <? elseif ($sql['type'] == 'mat'): include "file.php"; ?>
                      <? elseif ($sql['type'] == 'link'): include "link.php"; ?>
+                     <? elseif ($sql['type'] == 'test'): include "test.php"; ?>
                      <? elseif ($sql['type'] == 'question_item'): include "question_item.php"; ?><? endif ?>
                      <? $data_number = $sql['number']; ?>
                   <? endwhile ?>
@@ -92,7 +94,7 @@
                      </div>
                   </a>
                <? endif ?>
-               <a href="../?id=<?=$cours_d['id']?>" class="btn_end">
+               <a href="../?id=<?=$course_d['id']?>" class="btn_end">
                   <div class="btn btn_back">
                      <i class="far fa-times"></i>
                      <span>Сабақты аяқтау</span>
