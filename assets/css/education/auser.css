@@ -304,6 +304,17 @@
 	.uc_uiln{
 		width: calc(100% - 44px - 10px);
 		padding-right: 0;
+		padding-top: 25px;
+	}
+}
+
+
+.uc_uiln5{
+	width: 50%;
+}
+@media (max-width: 500px) {
+	.uc_uiln5{
+		width: 100%;
 	}
 }
 
@@ -357,6 +368,10 @@
 	font-size: 12px;
 	line-height: 18px;
 }
+
+
+
+
 
 
 

@@ -60,10 +60,8 @@
 							<a class="uc_ui" href="item.php?id=<?=$sub_d['id']?>">
 								<div class="uc_uil">
 									<div class="uc_ui_number"><?=$number?></div>
-									<div class="uc_uiln">
-										<div class="uc_uinu">
-											<div class="uc_ui_name"><?=$sub_d['name']?></div>
-										</div>
+									<div class="uc_uiln uc_uiln5">
+										<div class="uc_uinu"><?=$sub_d['name']?></div>
 									</div>
 								</div>
 							</a>
