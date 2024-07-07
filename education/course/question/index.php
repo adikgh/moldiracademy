@@ -57,7 +57,7 @@
 							<? // $user_d = fun::user($sub_d['user_id']); ?>
 							<? $number++; ?>
 
-							<a class="uc_ui" href="item.php?id=<?=$sub_d['id']?>">
+							<a class="uc_ui uc_ui5" href="item.php?id=<?=$sub_d['id']?>">
 								<div class="uc_uil">
 									<div class="uc_ui_number"><?=$number?></div>
 									<div class="uc_uiln uc_uiln5">

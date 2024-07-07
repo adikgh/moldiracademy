@@ -222,6 +222,15 @@
 	}
 }
 
+.uc_ui5{
+	height: auto;
+	min-height: auto;
+	padding: 15px 25px 15px 40px;
+}
+
+
+
+
 
 /*  */
 .uc_uil{
@@ -308,12 +317,14 @@
 	}
 }
 
-
+.uc_uiln4{
+	width: 45%;
+}
 .uc_uiln5{
-	width: 50%;
+	width: 95%;
 }
 @media (max-width: 500px) {
-	.uc_uiln5{
+	.uc_uiln5, .uc_uiln4{
 		width: 100%;
 	}
 }

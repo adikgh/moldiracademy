@@ -54,23 +54,21 @@
 							<? $user_d = fun::user($sub_d['user_id']); ?>
 							<? $number++; ?>
 
-							<a class="uc_ui" href="item.php?id=<?=$sub_d['id']?>">
+							<div class="uc_ui" href="item.php?id=<?=$sub_d['id']?>">
 								<div class="uc_uil">
 									<div class="uc_ui_number"><?=$number?></div>
-									<div class="uc_uiln">
+									<div class="uc_uiln uc_uiln4">
 										<div class="uc_ui_icon lazy_img" data-src="/assets/uploads/users/<?=$user_d['img']?>"><?=($user_d['img']!=null?'':'<i class="fal fa-user"></i>')?></div>
 										<div class="uc_uinu">
 											<div class="uc_ui_name"><?=$user_d['name']?> <?=$user_d['surname']?></div>
 											<div class="uc_ui_phone"><?=($user_d['phone'] != null?$user_d['phone']:$user_d['mail'])?></div>
 										</div>
 									</div>
-									<div class="uc_uiln">
-										<div class="uc_uinu">
-											<div class="uc_ui_name"><?=$sub_d['txt']?></div>
-										</div>
+									<div class="uc_uiln uc_uiln4">
+										<div class="uc_uinu"><?=$sub_d['txt']?></div>
 									</div>
 								</div>
-							</a>
+							</div>
 						<? endwhile ?>
 					</div>
 				</div>
