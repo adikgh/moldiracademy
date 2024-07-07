@@ -1,8 +1,9 @@
 <div class="uitemc_um">
-   <a class="uitemc_umi <?=(!@$pod_menu_name?'uitemc_umi_act':'')?>" href="/education/course/admin.php?id=<?=$course_id?>">Сабақтар</a>
-   <a class="uitemc_umi <?=(@$pod_menu_name=='users'?'uitemc_umi_act':'')?>" href="/education/course/users/?id=<?=$course_id?>">Оқушылар</a>
+   <a class="uitemc_umi <?=(!@$pod_menu_name?'uitemc_umi_act':'')?>" href="/education/course/admin.php?id=<?=$course_id?>">Сабақ</a>
+   <a class="uitemc_umi <?=(@$pod_menu_name=='question'?'uitemc_umi_act':'')?>" href="/education/course/question/?id=<?=$course_id?>">Тапсырма</a>
+   <a class="uitemc_umi <?=(@$pod_menu_name=='users'?'uitemc_umi_act':'')?>" href="/education/course/users/?id=<?=$course_id?>">Оқушы</a>
    <div class="uitemc_umid">
-      <div class="uitemc_umi uitemc_umidl">Қосымша</div>
+      <!-- <div class="uitemc_umi uitemc_umidl">Қосымша</div> -->
       <div class="menu_c uitemc_umidc">
          <? if (!@$cours_d['setting']): ?>
             <div class="menu_ci cours_edit_pop">
